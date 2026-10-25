@@ -1,30 +1,24 @@
-import Image from "next/image";
-import Link from "next/link";
-import { FaUser } from "react-icons/fa6";
-import logo from "@/assets/images/logo.png";
-import NavLink from "./NavLink";
-import { FiMenu } from "react-icons/fi";
-import { BiLogInCircle } from "react-icons/bi";
-const navItems = [
-  { href: "/", label: "صفحه اصلی" },
-  { href: "/services", label: "خدمات گردشگری" },
-  { href: "/about", label: "درباره ما" },
-  { href: "/contact", label: "تماس با ما" },
-];
+import Image from "next/image"
+import Link from "next/link"
+import { FaUser } from "react-icons/fa6"
+import { BiLogInCircle } from "react-icons/bi"
+import logo from "@/assets/images/logo.png"
+import NavLink from "./NavLink"
+import MobileMenu from "./MobileMenu"
+import { navItems } from "@/constants/navigation"
 
 const Header = () => {
   return (
     <header className="h-18.5 w-full border-b border-zinc-200 bg-white">
       <div className="mx-auto flex h-full max-w-300 items-center justify-between px-4">
-        <button className="sm:hidden"
+        <MobileMenu />
 
-        ><FiMenu size={30} className="text-secondary"/></button>
         <Link href="/" aria-label="تورینو" className="not-sm:hidden">
           <Image src={logo} alt="تورینو" priority className="h-11 w-auto" />
         </Link>
 
-        <nav className="w-full sm:w-1/2">
-          <ul className="flex items-center justify-around sm:justify-between ">
+        <nav className="not-sm:hidden sm:w-1/2">
+          <ul className="flex items-center justify-between">
             {navItems.map((item) => (
               <li key={item.href}>
                 <NavLink href={item.href}>{item.label}</NavLink>
@@ -33,19 +27,24 @@ const Header = () => {
           </ul>
         </nav>
 
-        <button className="border rounded-lg p-2 text-primary">
-            <BiLogInCircle size={32}/>
-        </button>
-        <button 
+        <button
           type="button"
-          className="flex items-center gap-1 rounded-lg text-lg  border-2 border-primary px-3 py-1 text-primary not-sm:hidden"
+          aria-label="ورود | ثبت نام"
+          className="rounded-lg border p-2 text-primary sm:hidden"
+        >
+          <BiLogInCircle size={32} />
+        </button>
+
+        <button
+          type="button"
+          className="flex items-center gap-1 rounded-lg border-2 border-primary px-3 py-1 text-lg text-primary not-sm:hidden"
         >
           <FaUser className="size-4" aria-hidden="true" />
           ورود | ثبت نام
         </button>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

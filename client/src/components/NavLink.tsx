@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 type NavLinkProps = {
-  href: string;
-  children: React.ReactNode;
-};
+  href: string
+  children: React.ReactNode
+}
 
 const NavLink = ({ href, children }: NavLinkProps) => {
-  const pathname = usePathname();
-  const isActive = pathname === href;
+  const pathname = usePathname()
+  const isActive = pathname === href
 
   return (
     <Link
@@ -22,7 +22,7 @@ const NavLink = ({ href, children }: NavLinkProps) => {
     >
       {children}
     </Link>
-  );
-};
+  )
+}
 
-export default NavLink;
+export default NavLink
