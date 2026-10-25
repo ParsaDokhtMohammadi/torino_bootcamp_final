@@ -3,7 +3,8 @@ import Link from "next/link";
 import { FaUser } from "react-icons/fa6";
 import logo from "@/assets/images/logo.png";
 import NavLink from "./NavLink";
-
+import { FiMenu } from "react-icons/fi";
+import { BiLogInCircle } from "react-icons/bi";
 const navItems = [
   { href: "/", label: "صفحه اصلی" },
   { href: "/services", label: "خدمات گردشگری" },
@@ -15,12 +16,15 @@ const Header = () => {
   return (
     <header className="h-18.5 w-full border-b border-zinc-200 bg-white">
       <div className="mx-auto flex h-full max-w-300 items-center justify-between px-4">
-        <Link href="/" aria-label="تورینو">
+        <button className="sm:hidden"
+
+        ><FiMenu size={30} className="text-secondary"/></button>
+        <Link href="/" aria-label="تورینو" className="not-sm:hidden">
           <Image src={logo} alt="تورینو" priority className="h-11 w-auto" />
         </Link>
 
-        <nav>
-          <ul className="flex items-center gap-14">
+        <nav className="w-full sm:w-1/2">
+          <ul className="flex items-center justify-around sm:justify-between ">
             {navItems.map((item) => (
               <li key={item.href}>
                 <NavLink href={item.href}>{item.label}</NavLink>
@@ -29,9 +33,12 @@ const Header = () => {
           </ul>
         </nav>
 
-        <button
+        <button className="border rounded-lg p-2 text-primary">
+            <BiLogInCircle size={32}/>
+        </button>
+        <button 
           type="button"
-          className="flex items-center gap-1 rounded-lg text-lg  border-2 border-primary px-3 py-1 text-primary"
+          className="flex items-center gap-1 rounded-lg text-lg  border-2 border-primary px-3 py-1 text-primary not-sm:hidden"
         >
           <FaUser className="size-4" aria-hidden="true" />
           ورود | ثبت نام
