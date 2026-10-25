@@ -4,12 +4,12 @@ import localFont from "next/font/local";
 export const byekan = localFont({
   src: [
     {
-      path: "../assets/fonts/BYekan.ttf",
+      path: "../../assets/fonts/BYekan.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../assets/fonts/BYekanBold.ttf",
+      path: "../../assets/fonts/BYekanBold.ttf",
       weight: "700",
       style: "normal",
     },
