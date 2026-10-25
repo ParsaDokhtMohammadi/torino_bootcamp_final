@@ -6,6 +6,7 @@ import logo from "@/assets/images/logo.png"
 import NavLink from "./NavLink"
 import MobileMenu from "./MobileMenu"
 import { navItems } from "@/constants/navigation"
+import { pathNames } from "@/constants/paths"
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
       <div className="mx-auto flex h-full max-w-300 items-center justify-between px-4">
         <MobileMenu />
 
-        <Link href="/" aria-label="تورینو" className="not-sm:hidden">
+        <Link href={pathNames.home} aria-label="تورینو" className="not-sm:hidden">
           <Image src={logo} alt="تورینو" priority className="h-11 w-auto" />
         </Link>
 
