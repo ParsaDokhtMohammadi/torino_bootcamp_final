@@ -8,3 +8,10 @@ export const mobileSchema = z.object({
     .transform(toEnglishDigits)
     .pipe(z.string().regex(/^09\d{9}$/, "شماره موبایل معتبر نیست")),
 })
+
+export const otpSchema = z.object({
+  code: z
+    .string()
+    .transform(toEnglishDigits)
+    .pipe(z.string().regex(/^\d{6}$/, "کد تایید باید ۶ رقم باشد")),
+})

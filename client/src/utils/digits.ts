@@ -7,3 +7,7 @@ export function toEnglishDigits(value: string) {
     return String(persianIndex !== -1 ? persianIndex : arabicDigits.indexOf(digit))
   })
 }
+
+export function toPersianDigits(value: string | number) {
+  return String(value).replace(/\d/g, (digit) => persianDigits[Number(digit)])
+}

@@ -9,17 +9,18 @@ type ModalProps = {
   isOpen: boolean
   onClose: () => void
   labelledBy?: string
+  hideCloseButton?: boolean
   children: React.ReactNode
 }
 
 const subscribe = () => () => {}
 
-// true in the browser, false during SSR, without a setState-in-effect re-render
+
 function useIsClient() {
   return useSyncExternalStore(subscribe, () => true, () => false)
 }
 
-const Modal = ({ isOpen, onClose, labelledBy, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, labelledBy, hideCloseButton = false, children }: ModalProps) => {
   const isClient = useIsClient()
 
   useEffect(() => {
@@ -63,14 +64,16 @@ const Modal = ({ isOpen, onClose, labelledBy, children }: ModalProps) => {
             transition={{ duration: 0.2 }}
             className="relative w-full max-w-140 rounded-2xl bg-white p-6 shadow-xl sm:p-10"
           >
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="بستن"
-              className="absolute end-5 top-5 text-text"
-            >
-              <IoClose size={24} />
-            </button>
+            {!hideCloseButton && (
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="بستن"
+                className="absolute inset-e-5 top-5 text-text"
+              >
+                <IoClose size={24} />
+              </button>
+            )}
 
             {children}
           </motion.div>
