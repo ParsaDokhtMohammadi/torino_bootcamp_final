@@ -4,21 +4,14 @@ import { useState } from "react"
 import { FaUser } from "react-icons/fa6"
 import { BiLogInCircle } from "react-icons/bi"
 import LoginModal from "./LoginModal"
+import UserMenu from "./UserMenu"
 import { useAuth } from "@/context/AuthContext"
-import { toPersianDigits } from "@/utils/digits"
 
 const LoginButton = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { role, mobile } = useAuth()
 
-  if (role === "user") {
-    return (
-      <div className="flex items-center gap-1 text-lg text-primary">
-        <FaUser className="size-4" aria-hidden="true" />
-        <span dir="ltr">{toPersianDigits(mobile)}</span>
-      </div>
-    )
-  }
+  if (role === "user") return <UserMenu mobile={mobile} />
 
   return (
     <>
