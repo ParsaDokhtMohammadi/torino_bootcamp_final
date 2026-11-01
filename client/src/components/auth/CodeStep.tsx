@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "react-toastify"
 import OtpInput from "react18-input-otp"
 import { useCheckOtp, useSendOtp } from "@/services/auth"
+import { useAuth } from "@/context/AuthContext"
 import { getErrorMessage } from "@/utils/errors"
 import { toEnglishDigits, toPersianDigits } from "@/utils/digits"
 import { useCountdown } from "@/utils/hooks/useCountdown"
@@ -18,6 +19,7 @@ type CodeStepProps = {
 const CodeStep = ({ mobile, onSuccess }: CodeStepProps) => {
   const checkOtp = useCheckOtp()
   const sendOtp = useSendOtp()
+  const { login } = useAuth()
   const { remaining, restart } = useCountdown(RESEND_SECONDS)
   const {
     control,
@@ -33,7 +35,7 @@ const CodeStep = ({ mobile, onSuccess }: CodeStepProps) => {
       { mobile, code },
       {
         onSuccess: (data) => {
-          console.log("login success", data)
+          login(data)
           toast.success("با موفقیت وارد شدید")
           onSuccess()
         },

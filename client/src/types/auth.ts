@@ -5,6 +5,8 @@ export type User = {
   mobile: string
 }
 
+export type Role = "guest" | "user"
+
 export type SendOtpBody = {
   mobile: string
 }
