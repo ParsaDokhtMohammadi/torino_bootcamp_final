@@ -46,22 +46,19 @@ const MobileStep = ({ defaultMobile, onSent }: MobileStepProps) => {
         ورود به تورینو
       </h2>
 
-      <label htmlFor="mobile" className="mb-3 text-sm text-text">
+      <label className="flex flex-col gap-3 text-sm text-text">
         شماره موبایل خود را وارد کنید
+        <input
+          type="tel"
+          inputMode="numeric"
+          maxLength={11}
+          autoComplete="tel"
+          placeholder="۰۹۱۲***۴۲۵۳"
+          aria-invalid={errors.mobile ? "true" : "false"}
+          {...register("mobile")}
+          className="h-13 rounded-md border border-zinc-300 px-3 text-base text-text outline-none placeholder:text-zinc-400 focus:border-primary aria-invalid:border-red-500"
+        />
       </label>
-
-      <input
-        id="mobile"
-        type="tel"
-        inputMode="numeric"
-        maxLength={11}
-        autoComplete="tel"
-        placeholder="۰۹۱۲***۴۲۵۳"
-        aria-invalid={errors.mobile ? "true" : "false"}
-        aria-describedby={errors.mobile ? "mobile-error" : undefined}
-        {...register("mobile")}
-        className="h-13 rounded-md border border-zinc-300 px-3 text-text outline-none placeholder:text-zinc-400 focus:border-primary aria-invalid:border-red-500"
-      />
 
       <p  role="alert" className="mt-2 min-h-5 text-sm text-red-500">
         {errors.mobile?.message}

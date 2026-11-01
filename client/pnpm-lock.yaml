@@ -38,6 +38,9 @@ importers:
       react-toastify:
         specifier: ^11.2.0
         version: 11.2.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      react18-input-otp:
+        specifier: 1.1.4
+        version: 1.1.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       zod:
         specifier: ^4.6.7
         version: 4.6.7
@@ -1903,6 +1906,12 @@ packages:
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
+
+  react18-input-otp@1.1.4:
+    resolution: {integrity: sha512-35xvmTeuPWIxd0Z0Opx4z3OoMaTmKN4ubirQCx1YMZiNoe+2h1hsOSUco4aKPlGXWZCtXrfOFieAh46vqiK9mA==}
+    peerDependencies:
+      react: 16.2.0 - 18
+      react-dom: 16.2.0 - 18
 
   react@19.3.0:
     resolution: {integrity: sha512-E8LUcbtBWt20bbl2YoHfx4ZDBdxVTfOKtCZn9cDSJ4l6/nuoApcpIBcj47t2wZoVX8g2ZHuMHbiShgCR1T5Sog==}
@@ -4052,6 +4061,11 @@ snapshots:
   react-toastify@11.2.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       clsx: 2.1.1
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+
+  react18-input-otp@1.1.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+    dependencies:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
 

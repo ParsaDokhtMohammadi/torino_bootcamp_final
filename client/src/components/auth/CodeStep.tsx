@@ -1,10 +1,10 @@
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "react-toastify"
-import OtpInput from "@/components/ui/OtpInput"
+import OtpInput from "react18-input-otp"
 import { useCheckOtp, useSendOtp } from "@/services/auth"
 import { getErrorMessage } from "@/utils/errors"
-import { toPersianDigits } from "@/utils/digits"
+import { toEnglishDigits, toPersianDigits } from "@/utils/digits"
 import { useCountdown } from "@/utils/hooks/useCountdown"
 import { otpSchema } from "@/validations/auth"
 
@@ -72,7 +72,21 @@ const CodeStep = ({ mobile, onSuccess }: CodeStepProps) => {
         name="code"
         control={control}
         render={({ field }) => (
-          <OtpInput value={field.value} onChange={field.onChange} invalid={Boolean(errors.code)} />
+          <div dir="ltr">
+            <OtpInput
+              numInputs={6}
+              value={toPersianDigits(field.value)}
+              onChange={(otp: string) => field.onChange(toEnglishDigits(otp).replace(/\D/g, ""))}
+              shouldAutoFocus
+              autoComplete="one-time-code"
+              inputProps={{ inputMode: "numeric" }}
+              hasErrored={Boolean(errors.code)}
+              containerStyle="flex justify-center gap-2 sm:gap-3"
+              inputStyle="size-12! sm:size-14! rounded-md border border-zinc-300 text-xl text-text outline-none"
+              focusStyle="border-primary!"
+              errorStyle="border-red-500!"
+            />
+          </div>
         )}
       />
 

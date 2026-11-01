@@ -8,7 +8,7 @@ import { IoClose } from "react-icons/io5"
 type ModalProps = {
   isOpen: boolean
   onClose: () => void
-  labelledBy?: string
+  label?: string
   hideCloseButton?: boolean
   children: React.ReactNode
 }
@@ -20,7 +20,7 @@ function useIsClient() {
   return useSyncExternalStore(subscribe, () => true, () => false)
 }
 
-const Modal = ({ isOpen, onClose, labelledBy, hideCloseButton = false, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, label, hideCloseButton = false, children }: ModalProps) => {
   const isClient = useIsClient()
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Modal = ({ isOpen, onClose, labelledBy, hideCloseButton = false, children 
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-labelledby={labelledBy}
+            aria-label={label}
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
