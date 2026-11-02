@@ -1,7 +1,16 @@
+import type { Tour } from "@/types/tour"
 
-const HomePageTemplate = () => {
+type HomePageTemplateProps = {
+  tours: Tour[]
+}
+
+const HomePageTemplate = ({ tours }: HomePageTemplateProps) => {
   return (
-    <p>hello</p>
+    <ul>
+      {tours.map((tour) => (
+        <li key={tour.id}>{tour.title}</li>
+      ))}
+    </ul>
   )
 }
 
