@@ -1,8 +1,13 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
+
+const apiUrl = new URL(process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:6500")
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
+  images: {
+    remotePatterns: [new URL(`${apiUrl.origin}/static/images/**`)],
+    dangerouslyAllowLocalIP: apiUrl.hostname === "localhost",
+  },
   turbopack: {
     rules: {
       "*.css": {
@@ -11,6 +16,6 @@ const nextConfig: NextConfig = {
       },
     },
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

@@ -17,3 +17,9 @@ export type Tour = {
   options: string[]
   image: string
 }
+
+export type TourFilters = {
+  originId: string
+  destinationId: string
+  range: { from: Date, to: Date } | null
+}

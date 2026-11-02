@@ -5,24 +5,25 @@ import { HiOutlineLocationMarker } from "react-icons/hi"
 import { TbWorldSearch } from "react-icons/tb"
 import DateRangePicker, { type DateRange } from "@/components/ui/DateRangePicker"
 import { toPersianCity } from "@/constants/cities"
-import type { Place } from "@/types/tour"
+import type { Place, TourFilters } from "@/types/tour"
 
 type SearchBarProps = {
   origins: Place[]
   destinations: Place[]
+  onSearch: (filters: TourFilters) => void
 }
 
 const fieldClass =
   "flex h-12 items-center gap-2 rounded-xl border border-zinc-200 px-3 sm:h-full sm:rounded-none sm:border-0"
 
-const SearchBar = ({ origins, destinations }: SearchBarProps) => {
+const SearchBar = ({ origins, destinations, onSearch }: SearchBarProps) => {
   const [originId, setOriginId] = useState("")
   const [destinationId, setDestinationId] = useState("")
   const [range, setRange] = useState<DateRange | null>(null)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log({ originId, destinationId, range })
+    onSearch({ originId, destinationId, range })
   }
 
   return (

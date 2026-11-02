@@ -3,7 +3,7 @@ import banner from "@/assets/images/banner.svg"
 import HomePageTemplate from "@/templates/HomePageTemplate"
 import { getTours } from "@/services/tours"
 
-export const revalidate = 60 * 60 * 2
+export const revalidate = 7200
 
 export default async function Home() {
   const tours = await getTours()
