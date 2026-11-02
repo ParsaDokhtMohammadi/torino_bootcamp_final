@@ -7,10 +7,8 @@ import {
 } from "@tanstack/react-query"
 import { ToastContainer } from "react-toastify"
 import { AuthProvider } from "@/context/AuthContext"
-import type { User } from "@/types/auth"
 
 type ProvidersProps = {
-  initialUser: User | null
   children: React.ReactNode
 }
 
@@ -32,12 +30,12 @@ function getQueryClient() {
   return browserQueryClient
 }
 
-export default function Providers({ initialUser, children }: ProvidersProps) {
+export default function Providers({ children }: ProvidersProps) {
   const queryClient = getQueryClient()
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider initialUser={initialUser}>
+      <AuthProvider>
         {children}
         <ToastContainer rtl position="top-center" />
       </AuthProvider>

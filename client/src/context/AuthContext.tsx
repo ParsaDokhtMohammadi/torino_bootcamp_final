@@ -1,12 +1,13 @@
 "use client"
 
-import { createContext, use, useState } from "react"
+import { createContext, use, useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import { cookieNames } from "@/constants/cookies"
 import type { CheckOtpResponse, Role, User } from "@/types/auth"
 
 type AuthContextValue = {
   user: User | null
+  isReady: boolean
   name: string
   mobile: string
   role: Role
@@ -15,14 +16,20 @@ type AuthContextValue = {
 }
 
 type AuthProviderProps = {
-  initialUser: User | null
   children: React.ReactNode
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
 
-export function AuthProvider({ initialUser, children }: AuthProviderProps) {
-  const [user, setUser] = useState(initialUser)
+export function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<User | null>(null)
+  const [isReady, setIsReady] = useState(false)
+
+  useEffect(() => {
+    const raw = Cookies.get(cookieNames.user)
+    if (raw) setUser(JSON.parse(raw))
+    setIsReady(true)
+  }, [])
 
   const login = (data: CheckOtpResponse) => {
     Cookies.set(cookieNames.accessToken, data.accessToken, { expires: 1 / 24 })
@@ -40,6 +47,7 @@ export function AuthProvider({ initialUser, children }: AuthProviderProps) {
 
   const value = {
     user,
+    isReady,
     name: [user?.firstName, user?.lastName].filter(Boolean).join(" "),
     mobile: user?.mobile ?? "",
     role: user ? "user" : "guest",

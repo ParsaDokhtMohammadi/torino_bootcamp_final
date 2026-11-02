@@ -9,7 +9,9 @@ import { useAuth } from "@/context/AuthContext"
 
 const LoginButton = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { role, mobile } = useAuth()
+  const { isReady, role, mobile } = useAuth()
+
+  if (!isReady) return <div className="h-11 w-32 animate-pulse rounded-lg bg-zinc-100 not-sm:w-12" />
 
   if (role === "user") return <UserMenu mobile={mobile} />
 
