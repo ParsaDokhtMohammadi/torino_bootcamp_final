@@ -5,7 +5,9 @@ import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
 import { FaUser } from "react-icons/fa6"
 import { FiChevronDown, FiLogOut, FiUser } from "react-icons/fi"
+import { toast } from "react-toastify"
 import { pathNames } from "@/constants/paths"
+import { useAuth } from "@/context/AuthContext"
 import { toPersianDigits } from "@/utils/digits"
 
 type UserMenuProps = {
@@ -15,8 +17,14 @@ type UserMenuProps = {
 const UserMenu = ({ mobile }: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const { logout } = useAuth()
 
 
+
+  const handleLogout = () => {
+    logout()
+    toast.success("از حساب کاربری خارج شدید")
+  }
 
   const phone = <span>{toPersianDigits(mobile)}</span>
 
@@ -65,6 +73,7 @@ const UserMenu = ({ mobile }: UserMenuProps) => {
 
             <button
               type="button"
+              onClick={handleLogout}
               className="flex w-full items-center gap-2 px-3 py-3 text-red-600"
             >
               <FiLogOut className="size-5" aria-hidden="true" />

@@ -9,6 +9,7 @@ type AuthContextValue = {
   mobile: string
   role: Role
   login: (data: CheckOtpResponse) => void
+  logout: () => void
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
@@ -28,12 +29,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(data.user)
   }
 
+  const logout = () => {
+    localStorage.removeItem("accessToken")
+    localStorage.removeItem("refreshToken")
+    localStorage.removeItem("user")
+    setUser(null)
+  }
+
   const value = {
     user,
     name: [user?.firstName, user?.lastName].filter(Boolean).join(" "),
     mobile: user?.mobile ?? "",
     role: user ? "user" : "guest",
     login,
+    logout,
   } satisfies AuthContextValue
 
   return <AuthContext value={value}>{children}</AuthContext>
