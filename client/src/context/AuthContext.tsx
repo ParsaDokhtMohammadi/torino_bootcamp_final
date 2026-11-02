@@ -1,6 +1,8 @@
 "use client"
 
-import { createContext, use, useEffect, useState } from "react"
+import { createContext, use, useState } from "react"
+import Cookies from "js-cookie"
+import { cookieNames } from "@/constants/cookies"
 import type { CheckOtpResponse, Role, User } from "@/types/auth"
 
 type AuthContextValue = {
@@ -12,27 +14,27 @@ type AuthContextValue = {
   logout: () => void
 }
 
+type AuthProviderProps = {
+  initialUser: User | null
+  children: React.ReactNode
+}
+
 const AuthContext = createContext<AuthContextValue | null>(null)
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-
-  useEffect(() => {
-    const saved = localStorage.getItem("user")
-    if (saved) setUser(JSON.parse(saved))
-  }, [])
+export function AuthProvider({ initialUser, children }: AuthProviderProps) {
+  const [user, setUser] = useState(initialUser)
 
   const login = (data: CheckOtpResponse) => {
-    localStorage.setItem("accessToken", data.accessToken)
-    localStorage.setItem("refreshToken", data.refreshToken)
-    localStorage.setItem("user", JSON.stringify(data.user))
+    Cookies.set(cookieNames.accessToken, data.accessToken, { expires: 1 / 24 })
+    Cookies.set(cookieNames.refreshToken, data.refreshToken, { expires: 7 })
+    Cookies.set(cookieNames.user, JSON.stringify(data.user), { expires: 7 })
     setUser(data.user)
   }
 
   const logout = () => {
-    localStorage.removeItem("accessToken")
-    localStorage.removeItem("refreshToken")
-    localStorage.removeItem("user")
+    Cookies.remove(cookieNames.accessToken)
+    Cookies.remove(cookieNames.refreshToken)
+    Cookies.remove(cookieNames.user)
     setUser(null)
   }
 
