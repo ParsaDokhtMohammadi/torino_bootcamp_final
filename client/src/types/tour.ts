@@ -13,6 +13,7 @@ export type Tour = {
   fleetVehicle: string
   price: number
   availableSeats: number
+  capacity: number
   insurance: boolean
   options: string[]
   image: string

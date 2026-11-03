@@ -6,6 +6,13 @@ const DAY_MS = 24 * 60 * 60 * 1000
 
 const monthFormatter = new Intl.DateTimeFormat("fa-IR", { month: "long" })
 
+const dateFormatter = new Intl.DateTimeFormat("fa-IR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "Asia/Tehran",
+})
+
 function startOfDay(date: Date) {
   const copy = new Date(date)
   copy.setHours(0, 0, 0, 0)
@@ -38,6 +45,15 @@ export function getTourSummary(tour: Tour) {
   const month = monthFormatter.format(new Date(tour.startDate))
   const days = toPersianDigits(getTourDays(tour))
   return [`${month} ماه . ${days} روزه`, toPersianVehicle(tour.fleetVehicle), ...tour.options].join(" - ")
+}
+
+export function getTourDuration(tour: Tour) {
+  const nights = getTourDays(tour)
+  return `${toPersianDigits(nights + 1)} روز و ${toPersianDigits(nights)} شب`
+}
+
+export function formatTourDate(date: string) {
+  return dateFormatter.format(new Date(date))
 }
 
 export function formatPrice(price: number) {
