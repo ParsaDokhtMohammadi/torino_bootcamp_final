@@ -7,6 +7,7 @@ import calendar from "@/assets/icons/calendar.svg"
 import profile2User from "@/assets/icons/profile-2user.svg"
 import security from "@/assets/icons/security.svg"
 import bus from "@/assets/icons/bus.svg"
+import ReserveButton from "@/components/tours/ReserveButton"
 import { toPersianCity } from "@/constants/cities"
 import { toPersianVehicle } from "@/constants/vehicles"
 import { toPersianDigits } from "@/utils/digits"
@@ -92,12 +93,7 @@ const TourDetailsTemplate = ({ tour }: TourDetailsTemplateProps) => {
         <p className="text-[10px] text-zinc-600 sm:text-sm">
           <span className="text-2xl text-complementry sm:text-[28px]">{formatPrice(tour.price)}</span> تومان
         </p>
-        <button
-          type="button"
-          className="h-11 w-38.5 rounded-[10px] bg-primary text-xl text-white transition hover:bg-primary/90 sm:h-14 sm:w-51 sm:text-2xl"
-        >
-          رزرو و خرید
-        </button>
+        <ReserveButton tourId={tour.id} />
       </div>
     </section>
   )

@@ -11,6 +11,9 @@ type AuthContextValue = {
   name: string
   mobile: string
   role: Role
+  isLoginOpen: boolean
+  openLogin: () => void
+  closeLogin: () => void
   login: (data: CheckOtpResponse) => void
   logout: () => void
 }
@@ -24,6 +27,7 @@ const AuthContext = createContext<AuthContextValue | null>(null)
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null)
   const [isReady, setIsReady] = useState(false)
+  const [isLoginOpen, setIsLoginOpen] = useState(false)
 
   useEffect(() => {
     const raw = Cookies.get(cookieNames.user)
@@ -51,6 +55,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     name: [user?.firstName, user?.lastName].filter(Boolean).join(" "),
     mobile: user?.mobile ?? "",
     role: user ? "user" : "guest",
+    isLoginOpen,
+    openLogin: () => setIsLoginOpen(true),
+    closeLogin: () => setIsLoginOpen(false),
     login,
     logout,
   } satisfies AuthContextValue
