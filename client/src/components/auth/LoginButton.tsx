@@ -2,6 +2,9 @@
 
 import { FaUser } from "react-icons/fa6"
 import { BiLogInCircle } from "react-icons/bi"
+import { FiShoppingCart } from "react-icons/fi"
+import Link from "next/link"
+import { pathNames } from "@/constants/paths"
 import UserMenu from "./UserMenu"
 import { useAuth } from "@/context/AuthContext"
 
@@ -10,7 +13,16 @@ const LoginButton = () => {
 
   if (!isReady) return <div className="h-11 w-32 animate-pulse rounded-lg bg-zinc-100 not-sm:w-12" />
 
-  if (role === "user") return <UserMenu mobile={mobile} />
+  if (role === "user") {
+    return (
+      <div className="flex items-center gap-4">
+        <Link href={pathNames.basket} aria-label="سبد خرید" className="text-primary">
+          <FiShoppingCart className="size-6" />
+        </Link>
+        <UserMenu mobile={mobile} />
+      </div>
+    )
+  }
 
   return (
     <>

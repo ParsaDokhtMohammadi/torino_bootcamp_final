@@ -5,6 +5,7 @@ export const pathNames = {
   contact: "/contact",
   tour: (tourId: string) => `/tours/${tourId}`,
   profile: "/profile",
+  basket: "/basket",
 } as const
 
 export const routePatterns = {
