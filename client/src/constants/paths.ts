@@ -4,7 +4,9 @@ export const pathNames = {
   about: "/about",
   contact: "/contact",
   tour: (tourId: string) => `/tours/${tourId}`,
-  profile: "/profile",
+  profile: "/dashboard",
+  myTours: "/dashboard/my-tours",
+  transactions: "/dashboard/transactions",
   basket: "/basket",
 } as const
 
