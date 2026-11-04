@@ -25,7 +25,8 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use((response) => response,
   async (error: AxiosError) => {
-    if (error.response?.status !== 403 || !error.config) return Promise.reject(error)
+    const status = error.response?.status
+    if ((status !== 401 && status !== 403) || !error.config) return Promise.reject(error)
 
     const refreshToken = Cookies.get(cookieNames.refreshToken)
     const { data } = await axios.post<RefreshTokenResponse>(`${baseURL}/auth/refresh-token`, { refreshToken })
