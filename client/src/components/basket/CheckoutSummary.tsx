@@ -3,9 +3,10 @@ import type { Tour } from "@/types/tour"
 
 type CheckoutSummaryProps = {
   tour: Tour
+  isSubmitting: boolean
 }
 
-const CheckoutSummary = ({ tour }: CheckoutSummaryProps) => {
+const CheckoutSummary = ({ tour, isSubmitting }: CheckoutSummaryProps) => {
   return (
     <aside className="flex flex-col rounded-[10px] bg-white p-3 lg:w-75">
       <div className="flex items-center justify-between border-b border-dashed border-zinc-500 pb-6">
@@ -22,9 +23,10 @@ const CheckoutSummary = ({ tour }: CheckoutSummaryProps) => {
 
       <button
         type="submit"
-        className="h-14 w-full rounded-[5px] bg-primary text-2xl text-white transition hover:bg-primary/90"
+        disabled={isSubmitting}
+        className="h-14 w-full rounded-[5px] bg-primary text-2xl text-white transition hover:bg-primary/90 disabled:opacity-60"
       >
-        ثبت و خرید نهایی
+        {isSubmitting ? "در حال ثبت..." : "ثبت و خرید نهایی"}
       </button>
     </aside>
   )

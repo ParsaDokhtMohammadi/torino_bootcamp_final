@@ -13,7 +13,7 @@
   "title": "تور کردستان",
   "fleetVehicle": "bus",
   "price": 105000,
-  "availableSeats": 25,
+  "availableSeats": 24,
   "capacity": 30,
   "insurance": true,
   "options": [

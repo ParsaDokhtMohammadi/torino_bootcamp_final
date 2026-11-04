@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Controller, useFormContext } from "react-hook-form"
+import { Controller, useFormContext, useFormState } from "react-hook-form"
 import { FaUser } from "react-icons/fa6"
 import { FiChevronDown } from "react-icons/fi"
 import { DatePicker } from "zaman"
@@ -10,15 +10,12 @@ const inputClassName =
   "h-12 w-full rounded-[5px] border border-zinc-400 bg-white px-2 text-sm text-text outline-none placeholder:text-zinc-500 focus:border-primary aria-invalid:border-red-500"
 
 const FieldError = ({ message }: { message?: string }) => (
-  <p role="alert" className="mt-1 min-h-4 text-xs text-red-500">{message}</p>
+  <p  className="mt-1 min-h-4 text-xs text-red-500">{message}</p>
 )
 
 const PassengerForm = () => {
-  const {
-    register,
-    control,
-    formState: { errors },
-  } = useFormContext<PassengerFormValues>()
+  const { register, control } = useFormContext<PassengerFormValues>()
+  const { errors } = useFormState({ control })
 
   return (
     <section className="flex flex-1 flex-col gap-5 rounded-[10px] border border-zinc-300 bg-white p-4 sm:p-5">
