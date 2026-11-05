@@ -1,4 +1,3 @@
-import { toPersianDigits } from "@/utils/digits"
 import type { Transaction } from "@/types/transaction"
 
 const dateFormatter = new Intl.DateTimeFormat("fa-IR", {
@@ -26,8 +25,4 @@ export function formatTransactionDate(date: string) {
 
 export function getTransactionTypeLabel(type: Transaction["type"]) {
   return transactionTypeLabels[type]
-}
-
-export function getOrderNumber(id: string) {
-  return toPersianDigits(id.slice(0, 8).toUpperCase())
 }

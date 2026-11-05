@@ -1,5 +1,6 @@
 import { formatPrice } from "@/utils/tours"
-import { formatTransactionDate, getOrderNumber, getTransactionTypeLabel } from "@/utils/transactions"
+import { toShortId } from "@/utils/digits"
+import { formatTransactionDate, getTransactionTypeLabel } from "@/utils/transactions"
 import type { Transaction } from "@/types/transaction"
 
 type TransactionsPageTemplateProps = {
@@ -32,7 +33,7 @@ const TransactionsPageTemplate = ({ transactions }: TransactionsPageTemplateProp
               <td className="px-3 py-4 not-md:hidden md:px-4 md:py-3">{getTransactionTypeLabel(transaction.type)}</td>
               <td className="px-3 py-4 text-sm md:px-4 md:py-3">
                 <span className="not-md:hidden">سفارش </span>
-                {getOrderNumber(transaction.id)}
+                {toShortId(transaction.id)}
               </td>
             </tr>
           ))}

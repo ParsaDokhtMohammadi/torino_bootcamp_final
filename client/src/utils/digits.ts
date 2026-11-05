@@ -11,3 +11,7 @@ export function toEnglishDigits(value: string) {
 export function toPersianDigits(value: string | number) {
   return String(value).replace(/\d/g, (digit) => persianDigits[Number(digit)])
 }
+
+export function toShortId(id: string) {
+  return toPersianDigits(id.slice(0, 8).toUpperCase())
+}
