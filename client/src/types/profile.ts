@@ -12,7 +12,7 @@ export type Profile = {
   email?: string
   firstName?: string
   lastName?: string
-  gender?: Gender
+  gender?: Gender | ""
   birthDate?: string
   nationalCode?: string
   payment?: Payment

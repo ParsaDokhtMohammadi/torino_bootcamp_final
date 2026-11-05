@@ -10,8 +10,8 @@ const DashboardNav = () => {
   return (
     <nav className="w-full shrink-0 md:w-71">
       <ul className="flex border-b border-zinc-300 md:flex-col md:overflow-hidden md:rounded-[10px] md:border">
-        {dashboardNavItems.map(({ href, label, icon }) => {
-          const isActive = pathname === href
+        {dashboardNavItems.map(({ href, label, icon, activePaths }) => {
+          const isActive = activePaths.some((path) => path === pathname)
 
           return (
             <li

@@ -14,7 +14,7 @@ export async function updateProfile(body: UpdateProfileBody) {
   return data
 }
 
-export function useProfile(initialData?: Profile) {
+export function useProfile(initialData: Profile) {
   return useQuery({
     queryKey: profileQueryKey,
     queryFn: fetchProfile,

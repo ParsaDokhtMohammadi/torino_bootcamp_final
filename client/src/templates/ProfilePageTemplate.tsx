@@ -17,7 +17,7 @@ const ProfilePageTemplate = ({ profile }: ProfilePageTemplateProps) => {
         <ProfileField label="شماره موبایل" value={formatDigits(profile.mobile)} />
         <ProfileField
           label="ایمیل"
-          value={profile.email}
+          value={profile.email || undefined}
           action={<EditButton label={profile.email ? "ویرایش" : "افزودن"} />}
         />
       </ProfileSection>
