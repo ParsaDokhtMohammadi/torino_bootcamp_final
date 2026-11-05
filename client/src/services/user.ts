@@ -1,5 +1,6 @@
 import { cookies } from "next/headers"
 import { cookieNames } from "@/constants/cookies"
+import type { Profile } from "@/types/profile"
 import type { Tour } from "@/types/tour"
 import type { Transaction } from "@/types/transaction"
 
@@ -19,6 +20,10 @@ async function fetchWithAuth<T>(path: string) {
   }
 
   return (await res.json()) as T
+}
+
+export function getProfile() {
+  return fetchWithAuth<Profile>("/user/profile")
 }
 
 export function getTransactions() {

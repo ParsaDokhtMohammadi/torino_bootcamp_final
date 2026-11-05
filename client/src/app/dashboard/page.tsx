@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
+import ProfilePageTemplate from "@/templates/ProfilePageTemplate"
+import { getProfile } from "@/services/user"
 
 export const metadata: Metadata = {
   title: "پروفایل",
 }
 
-export default function ProfilePage() {
-  return <div />
+export default async function ProfilePage() {
+  const profile = await getProfile()
+
+  return <ProfilePageTemplate profile={profile} />
 }
