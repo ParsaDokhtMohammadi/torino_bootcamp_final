@@ -17,3 +17,10 @@ export type Profile = {
   nationalCode?: string
   payment?: Payment
 }
+
+export type UpdateProfileBody = Partial<Omit<Profile, "id">>
+
+export type UpdateProfileResponse = {
+  message: string
+  user: Profile
+}
