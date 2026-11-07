@@ -4,7 +4,7 @@ import { useState } from "react"
 import { HiOutlineLocationMarker } from "react-icons/hi"
 import { TbWorldSearch } from "react-icons/tb"
 import DateRangePicker, { type DateRange } from "@/components/ui/DateRangePicker"
-import { toPersianCity } from "@/constants/cities"
+import PlaceSelect from "@/components/search/PlaceSelect"
 import type { Place, TourFilters } from "@/types/tour"
 
 type SearchBarProps = {
@@ -31,37 +31,23 @@ const SearchBar = ({ origins, destinations, onSearch }: SearchBarProps) => {
       onSubmit={handleSubmit}
       className="grid w-full grid-cols-2 gap-3 sm:flex sm:h-17 sm:items-center sm:gap-0 sm:rounded-2xl sm:border sm:border-zinc-200 sm:p-2 sm:shadow-sm"
     >
-      <label className={`${fieldClass} sm:flex-1`}>
-        <HiOutlineLocationMarker className="size-5 shrink-0 text-zinc-500" />
-        <select
-          value={originId}
-          onChange={(event) => setOriginId(event.target.value)}
-          className="w-full cursor-pointer appearance-none bg-transparent text-text outline-none"
-        >
-          <option value="">مبدا</option>
-          {origins.map((place) => (
-            <option key={place.id} value={place.id}>
-              {toPersianCity(place.name)}
-            </option>
-          ))}
-        </select>
-      </label>
+      <PlaceSelect
+        places={origins}
+        value={originId}
+        onChange={setOriginId}
+        placeholder="مبدا"
+        icon={<HiOutlineLocationMarker className="size-5 shrink-0 text-zinc-500" />}
+        className={`${fieldClass} sm:flex-1`}
+      />
 
-      <label className={`${fieldClass} sm:flex-1 sm:border-s sm:border-zinc-200`}>
-        <TbWorldSearch className="size-5 shrink-0 text-zinc-500" />
-        <select
-          value={destinationId}
-          onChange={(event) => setDestinationId(event.target.value)}
-          className="w-full cursor-pointer appearance-none bg-transparent text-text outline-none"
-        >
-          <option value="">مقصد</option>
-          {destinations.map((place) => (
-            <option key={place.id} value={place.id}>
-              {toPersianCity(place.name)}
-            </option>
-          ))}
-        </select>
-      </label>
+      <PlaceSelect
+        places={destinations}
+        value={destinationId}
+        onChange={setDestinationId}
+        placeholder="مقصد"
+        icon={<TbWorldSearch className="size-5 shrink-0 text-zinc-500" />}
+        className={`${fieldClass} sm:flex-1 sm:border-s sm:border-zinc-200`}
+      />
 
       <DateRangePicker
         onChange={setRange}
