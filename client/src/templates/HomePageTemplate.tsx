@@ -1,5 +1,6 @@
 import TourExplorer from "@/components/tours/TourExplorer"
 import PhoneBanner from "@/components/home/PhoneBanner"
+import WhyTorino from "@/components/home/WhyTorino"
 import type { Tour } from "@/types/tour"
 
 type HomePageTemplateProps = {
@@ -15,6 +16,7 @@ const HomePageTemplate = ({ tours }: HomePageTemplateProps) => {
                 </h1>
             </TourExplorer>
             <PhoneBanner />
+            <WhyTorino />
         </div>
     )
 }
