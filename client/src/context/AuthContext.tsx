@@ -32,6 +32,24 @@ function isProtectedPath(pathname: string) {
   return protectedPaths.some((path) => pathname === path || pathname.startsWith(`${path}/`))
 }
 
+function parseUser(raw: string) {
+  try {
+    const value = JSON.parse(raw)
+    if (typeof value === "object" && value !== null && "mobile" in value && typeof value.mobile === "string") {
+      return value
+    }
+    return null
+  } catch {
+    return null
+  }
+}
+
+function clearAuthCookies() {
+  Cookies.remove(cookieNames.accessToken)
+  Cookies.remove(cookieNames.refreshToken)
+  Cookies.remove(cookieNames.user)
+}
+
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null)
   const [isReady, setIsReady] = useState(false)
@@ -42,7 +60,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     const raw = Cookies.get(cookieNames.user)
-    if (raw) setUser(JSON.parse(raw))
+    if (raw) {
+      const savedUser = parseUser(raw)
+      if (savedUser) setUser(savedUser)
+      else clearAuthCookies()
+    }
     setIsReady(true)
   }, [])
 
@@ -55,9 +77,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   const logout = () => {
-    Cookies.remove(cookieNames.accessToken)
-    Cookies.remove(cookieNames.refreshToken)
-    Cookies.remove(cookieNames.user)
+    clearAuthCookies()
     queryClient.clear()
     setUser(null)
     if (isProtectedPath(pathname)) router.replace(pathNames.home)
