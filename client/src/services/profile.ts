@@ -22,6 +22,13 @@ export function useProfile(initialData: Profile) {
   })
 }
 
+export function useProfileQuery() {
+  return useQuery({
+    queryKey: profileQueryKey,
+    queryFn: fetchProfile,
+  })
+}
+
 export function useUpdateProfile() {
   const queryClient = useQueryClient()
   return useMutation({

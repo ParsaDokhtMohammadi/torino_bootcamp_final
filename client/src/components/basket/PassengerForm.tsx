@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa6"
 import { FiChevronDown } from "react-icons/fi"
 import { DatePicker } from "zaman"
 import calendar from "@/assets/icons/calendar.svg"
-import type { PassengerFormValues } from "@/validations/passenger"
+import type { PassengerFormInput } from "@/validations/passenger"
 
 const inputClassName =
   "h-12 w-full rounded-[5px] border border-zinc-400 bg-white px-2 text-sm text-text outline-none placeholder:text-zinc-500 focus:border-primary aria-invalid:border-red-500"
@@ -14,7 +14,7 @@ const FieldError = ({ message }: { message?: string }) => (
 )
 
 const PassengerForm = () => {
-  const { register, control } = useFormContext<PassengerFormValues>()
+  const { register, control } = useFormContext<PassengerFormInput>()
   const { errors } = useFormState({ control })
 
   return (
@@ -59,6 +59,7 @@ const PassengerForm = () => {
                   accentColor="#28A745"
                   position="center"
                   className="w-full"
+                  defaultValue={field.value}
                   onChange={({ value }) => field.onChange(value)}
                   inputClass={`${inputClassName} cursor-pointer ps-8`}
                   inputAttributes={{

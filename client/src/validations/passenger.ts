@@ -8,4 +8,5 @@ export const passengerSchema = z.object({
   gender: genderSchema,
 })
 
-export type PassengerFormValues = z.infer<typeof passengerSchema>
+export type PassengerFormInput = z.input<typeof passengerSchema>
+export type PassengerFormValues = z.output<typeof passengerSchema>
