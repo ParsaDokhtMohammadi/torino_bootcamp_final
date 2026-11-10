@@ -1,6 +1,8 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
+import { pathNames } from "@/constants/paths"
 import { useAddToBasket } from "@/services/basket"
 import { useRequireAuth } from "@/utils/hooks/useRequireAuth"
 import { getErrorMessage } from "@/utils/errors"
@@ -10,12 +12,16 @@ type ReserveButtonProps = {
 }
 
 const ReserveButton = ({ tourId }: ReserveButtonProps) => {
+  const router = useRouter()
   const requireAuth = useRequireAuth()
   const { mutate, isPending } = useAddToBasket()
 
   const addToBasket = () =>
     mutate(tourId, {
-      onSuccess: (data) => toast.success(data.message),
+      onSuccess: (data) => {
+        toast.success(data.message)
+        router.push(pathNames.basket)
+      },
       onError: (error) => toast.error(getErrorMessage(error)),
     })
 
