@@ -1,8 +1,11 @@
 "use client"
 
 import { createContext, use, useEffect, useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
+import { useQueryClient } from "@tanstack/react-query"
 import Cookies from "js-cookie"
 import { cookieNames } from "@/constants/cookies"
+import { pathNames, protectedPaths } from "@/constants/paths"
 import type { CheckOtpResponse, Role, User } from "@/types/auth"
 
 type AuthContextValue = {
@@ -24,10 +27,18 @@ type AuthProviderProps = {
 
 const AuthContext = createContext<AuthContextValue | null>(null)
 
+
+function isProtectedPath(pathname: string) {
+  return protectedPaths.some((path) => pathname === path || pathname.startsWith(`${path}/`))
+}
+
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null)
   const [isReady, setIsReady] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
+  const queryClient = useQueryClient()
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const raw = Cookies.get(cookieNames.user)
@@ -39,6 +50,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     Cookies.set(cookieNames.accessToken, data.accessToken, { expires: 1 / 24 })
     Cookies.set(cookieNames.refreshToken, data.refreshToken, { expires: 7 })
     Cookies.set(cookieNames.user, JSON.stringify(data.user), { expires: 7 })
+    queryClient.clear()
     setUser(data.user)
   }
 
@@ -46,7 +58,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     Cookies.remove(cookieNames.accessToken)
     Cookies.remove(cookieNames.refreshToken)
     Cookies.remove(cookieNames.user)
+    queryClient.clear()
     setUser(null)
+    if (isProtectedPath(pathname)) router.replace(pathNames.home)
   }
 
   const value = {
