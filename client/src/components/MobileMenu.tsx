@@ -69,7 +69,6 @@ const MobileMenu = () => {
                         <Link
                           href={href}
                           onClick={() => setIsOpen(false)}
-                          aria-current={isActive ? "page" : undefined}
                           className={`flex items-center justify-end gap-2 px-3 ${
                             isActive ? "text-primary" : "text-text"
                           }`}

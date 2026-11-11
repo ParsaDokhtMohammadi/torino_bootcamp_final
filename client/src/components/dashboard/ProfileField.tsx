@@ -11,8 +11,8 @@ type ProfileFieldProps = {
 const ProfileField = ({ label, value, emphasized = false, action, className = "" }: ProfileFieldProps) => {
   return (
     <div className={`flex items-center gap-4 text-sm ${className}`}>
-      <dt className="text-zinc-600 md:w-28 md:shrink-0">{label}</dt>
-      <dd className={`ms-auto md:ms-0 ${emphasized ? "font-bold" : ""}`}>{value ?? "—"}</dd>
+      <p className="text-zinc-600 md:w-28 md:shrink-0">{label}</p>
+      <p className={`ms-auto md:ms-0 ${emphasized ? "font-bold" : ""}`}>{value}</p>
       {action ? <div className="ms-16 md:ms-auto">{action}</div> : null}
     </div>
   )

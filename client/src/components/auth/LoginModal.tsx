@@ -14,7 +14,7 @@ type LoginModalProps = {
 
 const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} label="ورود به تورینو" hideCloseButton>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <LoginFlow onClose={onClose} />
     </Modal>
   )

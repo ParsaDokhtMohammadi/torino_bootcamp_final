@@ -27,10 +27,6 @@ export type CheckOtpResponse = {
   user: User
 }
 
-export type RefreshTokenBody = {
-  refreshToken: string
-}
-
 export type RefreshTokenResponse = {
   accessToken: string
 }

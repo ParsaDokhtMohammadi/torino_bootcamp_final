@@ -44,6 +44,5 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/basket/:path*",
-    "/checkout/:path*",
   ],
 }

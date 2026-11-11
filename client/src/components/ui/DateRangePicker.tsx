@@ -10,11 +10,10 @@ export type DateRange = {
 
 type DateRangePickerProps = {
   onChange: (range: DateRange) => void
-  placeholder?: string
   className?: string
 }
 
-const DateRangePicker = ({ onChange, placeholder = "تاریخ", className = "" }: DateRangePickerProps) => {
+const DateRangePicker = ({ onChange, className = "" }: DateRangePickerProps) => {
   return (
     <div className={`relative flex items-center gap-2 ${className}`}>
       <HiOutlineCalendar className="pointer-events-none size-5 shrink-0 text-zinc-500" />
@@ -25,7 +24,7 @@ const DateRangePicker = ({ onChange, placeholder = "تاریخ", className = "" 
         position="center"
         onChange={({ from, to }) => onChange({ from, to })}
         inputClass="w-full bg-transparent text-text outline-none placeholder:text-zinc-500 cursor-pointer"
-        inputAttributes={{ placeholder, readOnly: true }}
+        inputAttributes={{ placeholder: "تاریخ", readOnly: true }}
         className="w-full"
       />
     </div>

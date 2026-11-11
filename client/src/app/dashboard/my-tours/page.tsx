@@ -3,7 +3,8 @@ import MyToursPageTemplate from "@/templates/MyToursPageTemplate"
 import { getUserTours } from "@/services/user"
 
 export const metadata: Metadata = {
-  title: "تور های من",
+  title: "تور های من | تورینو",
+  description: "مشاهده تور های رزرو شدها",
 }
 
 export default async function MyToursPage() {

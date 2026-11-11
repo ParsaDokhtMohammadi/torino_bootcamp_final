@@ -3,7 +3,9 @@ import TransactionsPageTemplate from "@/templates/TransactionsPageTemplate"
 import { getTransactions } from "@/services/user"
 
 export const metadata: Metadata = {
-  title: "تراکنش ها",
+  title: "تراکنش ها | تورینو",
+  
+  description: "مشاهده تاریخچه تراکنش های حساب کاربری",
 }
 
 export default async function TransactionsPage() {

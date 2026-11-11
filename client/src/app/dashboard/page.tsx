@@ -3,7 +3,8 @@ import ProfilePageTemplate from "@/templates/ProfilePageTemplate"
 import { getProfile } from "@/services/user"
 
 export const metadata: Metadata = {
-  title: "پروفایل",
+  title: "پروفایل | تورینو",
+  description: "مشاهده اطلاعات حساب کاربری  ",
 }
 
 export default async function ProfilePage() {

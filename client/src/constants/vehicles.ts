@@ -39,5 +39,5 @@ export function getVehicleTravelLabel(vehicle: string) {
 
 export function renderVehicleIcon(vehicle: string, className: string) {
   const icon = vehicleIcons[vehicle.toLowerCase()] ?? PiCar
-  return createElement(icon, { className, "aria-hidden": true })
+  return createElement(icon, { className})
 }

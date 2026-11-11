@@ -56,8 +56,7 @@ const BankInfoForm = ({ profile }: BankInfoFormProps) => {
           <TextField
             type="text"
             inputMode="numeric"
-            maxLength={19}
-            autoComplete="cc-number"
+            maxLength={16}
             placeholder="شماره کارت"
             error={errors.debitCard_code?.message}
             {...register("debitCard_code")}

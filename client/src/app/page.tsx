@@ -1,9 +1,16 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import banner from "@/assets/images/banner.svg"
 import HomePageTemplate from "@/templates/HomePageTemplate"
 import { getTours } from "@/services/tours"
 
 export const revalidate = 7200
+
+export const metadata: Metadata = {
+  
+  title: "صفحه اصلی | تورینو",
+  description: "جستجو و رزرو بهترین تور های داخلی و خارجی با تورینو",
+}
 
 export default async function Home() {
   const tours = await getTours()

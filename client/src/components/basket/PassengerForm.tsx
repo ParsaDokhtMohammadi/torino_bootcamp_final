@@ -7,7 +7,7 @@ import calendar from "@/assets/icons/calendar.svg"
 import type { PassengerFormInput } from "@/validations/passenger"
 
 const inputClassName =
-  "h-12 w-full rounded-[5px] border border-zinc-400 bg-white px-2 text-sm text-text outline-none placeholder:text-zinc-500 focus:border-primary aria-invalid:border-red-500"
+  "h-12 w-full rounded-[5px] border border-zinc-400 bg-white px-2 text-sm text-text outline-none placeholder:text-zinc-500 focus:border-primary"
 
 const FieldError = ({ message }: { message?: string }) => (
   <p  className="mt-1 min-h-4 text-xs text-red-500">{message}</p>
@@ -49,7 +49,7 @@ const PassengerForm = () => {
 
         <div>
           <div className="relative">
-            <Image src={calendar} alt="" aria-hidden="true" className="pointer-events-none absolute inset-s-2 top-1/2 z-10 size-4 -translate-y-1/2 opacity-60" />
+            <Image src={calendar} alt=""  className="pointer-events-none absolute inset-s-2 top-1/2 z-10 size-4 -translate-y-1/2 opacity-60" />
             <Controller
               control={control}
               name="birthDate"
@@ -64,8 +64,6 @@ const PassengerForm = () => {
                   inputClass={`${inputClassName} cursor-pointer ps-8`}
                   inputAttributes={{
                     placeholder: "تاریخ تولد",
-                    "aria-label": "تاریخ تولد",
-                    "aria-invalid": errors.birthDate ? "true" : "false",
                     readOnly: true,
                   }}
                 />

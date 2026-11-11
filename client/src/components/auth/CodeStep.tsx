@@ -92,7 +92,7 @@ const CodeStep = ({ mobile, onSuccess }: CodeStepProps) => {
         )}
       />
 
-      <p role="alert" className="mt-2 min-h-5 text-sm text-red-500">
+      <p className="mt-2 min-h-5 text-sm text-red-500">
         {errors.code?.message}
       </p>
 
@@ -107,7 +107,7 @@ const CodeStep = ({ mobile, onSuccess }: CodeStepProps) => {
           disabled={sendOtp.isPending}
           className="text-sm text-primary disabled:opacity-60"
         >
-          {sendOtp.isPending ? "در حال ارسال…" : "ارسال مجدد کد"}
+          {sendOtp.isPending ? "در حال ارسال" : "ارسال مجدد کد"}
         </button>
       )}
 
@@ -116,7 +116,7 @@ const CodeStep = ({ mobile, onSuccess }: CodeStepProps) => {
         disabled={checkOtp.isPending}
         className="mt-6 h-13 w-full rounded-md bg-primary text-lg text-white transition-opacity hover:opacity-90 disabled:opacity-60"
       >
-        {checkOtp.isPending ? "در حال بررسی…" : "ورود به تورینو"}
+        {checkOtp.isPending ? "در حال بررسی" : "ورود به تورینو"}
       </button>
     </form>
   )

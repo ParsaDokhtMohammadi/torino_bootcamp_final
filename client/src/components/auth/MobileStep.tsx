@@ -54,13 +54,12 @@ const MobileStep = ({ defaultMobile, onSent }: MobileStepProps) => {
           maxLength={11}
           autoComplete="tel"
           placeholder="۰۹۱۲***۴۲۵۳"
-          aria-invalid={errors.mobile ? "true" : "false"}
           {...register("mobile")}
-          className="h-13 rounded-md border border-zinc-300 px-3 text-base text-text outline-none placeholder:text-zinc-400 focus:border-primary aria-invalid:border-red-500"
+          className="h-13 rounded-md border border-zinc-300 px-3 text-base text-text outline-none placeholder:text-zinc-400 focus:border-primary"
         />
       </label>
 
-      <p  role="alert" className="mt-2 min-h-5 text-sm text-red-500">
+      <p className="mt-2 min-h-5 text-sm text-red-500">
         {errors.mobile?.message}
       </p>
 
@@ -69,7 +68,7 @@ const MobileStep = ({ defaultMobile, onSent }: MobileStepProps) => {
         disabled={sendOtp.isPending}
         className="mt-6 h-13 rounded-md bg-primary text-lg text-white transition-opacity hover:opacity-90 disabled:opacity-60"
       >
-        {sendOtp.isPending ? "در حال ارسال…" : "ارسال کد تایید"}
+        {sendOtp.isPending ? "در حال ارسال" : "ارسال کد تایید"}
       </button>
     </form>
   )

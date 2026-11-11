@@ -9,6 +9,7 @@ import { toast } from "react-toastify"
 import { pathNames } from "@/constants/paths"
 import { useAuth } from "@/context/AuthContext"
 import { toPersianDigits } from "@/utils/digits"
+import { useClickOutside } from "@/utils/hooks/useClickOutside"
 
 type UserMenuProps = {
   mobile: string
@@ -19,7 +20,7 @@ const UserMenu = ({ mobile }: UserMenuProps) => {
   const menuRef = useRef<HTMLDivElement>(null)
   const { logout } = useAuth()
 
-
+  useClickOutside(menuRef, () => setIsOpen(false), isOpen)
 
   const handleLogout = () => {
     logout()
@@ -33,15 +34,12 @@ const UserMenu = ({ mobile }: UserMenuProps) => {
       <button
         type="button"
         onClick={() => setIsOpen((open) => !open)}
-        aria-expanded={isOpen}
-        aria-haspopup="menu"
         className="flex items-center gap-1 text-lg text-primary"
       >
-        <FaUser className="size-4" aria-hidden="true" />
+        <FaUser className="size-4" />
         {phone}
         <FiChevronDown
           className={`size-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-          aria-hidden="true"
         />
       </button>
 
@@ -57,7 +55,7 @@ const UserMenu = ({ mobile }: UserMenuProps) => {
           >
             <div className="flex items-center gap-2 bg-zinc-100 px-3 py-2 text-lg text-secondary">
               <span className="flex size-8 items-center justify-center rounded-full bg-zinc-300">
-                <FaUser className="size-4 text-zinc-500" aria-hidden="true" />
+                <FaUser className="size-4 text-zinc-500" />
               </span>
               {phone}
             </div>
@@ -67,7 +65,7 @@ const UserMenu = ({ mobile }: UserMenuProps) => {
               onClick={() => setIsOpen(false)}
               className="mx-3 flex items-center gap-2 border-b border-zinc-200 py-3 text-text"
             >
-              <FiUser className="size-5" aria-hidden="true" />
+              <FiUser className="size-5" />
               اطلاعات حساب کاربری
             </Link>
 
@@ -76,7 +74,7 @@ const UserMenu = ({ mobile }: UserMenuProps) => {
               onClick={handleLogout}
               className="flex w-full items-center gap-2 px-3 py-3 text-red-600"
             >
-              <FiLogOut className="size-5" aria-hidden="true" />
+              <FiLogOut className="size-5" />
               خروج از حساب کاربری
             </button>
           </motion.div>

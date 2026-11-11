@@ -11,8 +11,6 @@ const TextField = ({ error, wrapperClassName = "", ...props }: TextFieldProps) =
   return (
     <div className={wrapperClassName}>
       <input
-        aria-label={props.placeholder}
-        aria-invalid={error ? "true" : "false"}
         {...props}
         className={inputClassName}
       />

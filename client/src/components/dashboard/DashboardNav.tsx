@@ -24,7 +24,6 @@ const DashboardNav = () => {
             >
               <Link
                 href={href}
-                aria-current={isActive ? "page" : undefined}
                 className={`-mb-px flex items-center justify-center gap-2 border-b-2 py-3 text-sm transition-colors md:mb-0 md:justify-start md:border-b-0 md:py-4 md:text-base ${
                   isActive ? "border-primary text-primary" : "border-transparent text-text hover:text-primary"
                 }`}

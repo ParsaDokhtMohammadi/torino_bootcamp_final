@@ -49,7 +49,6 @@ const AccountInfoForm = ({ profile }: AccountInfoFormProps) => {
         <form onSubmit={onSubmit} noValidate className="flex items-start gap-3">
           <TextField
             type="email"
-            autoComplete="email"
             placeholder="آدرس ایمیل"
             error={errors.email?.message}
             wrapperClassName="flex-1 md:w-64 md:flex-none"

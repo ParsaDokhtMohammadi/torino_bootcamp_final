@@ -3,13 +3,10 @@
 import { useEffect, useSyncExternalStore } from "react"
 import { createPortal } from "react-dom"
 import { AnimatePresence, motion } from "motion/react"
-import { IoClose } from "react-icons/io5"
 
 type ModalProps = {
   isOpen: boolean
   onClose: () => void
-  label?: string
-  hideCloseButton?: boolean
   children: React.ReactNode
 }
 
@@ -20,7 +17,7 @@ function useIsClient() {
   return useSyncExternalStore(subscribe, () => true, () => false)
 }
 
-const Modal = ({ isOpen, onClose, label, hideCloseButton = false, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   const isClient = useIsClient()
 
   useEffect(() => {
@@ -55,26 +52,13 @@ const Modal = ({ isOpen, onClose, label, hideCloseButton = false, children }: Mo
           />
 
           <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-label={label}
+
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ duration: 0.2 }}
             className="relative w-full max-w-140 rounded-2xl bg-white p-6 shadow-xl sm:p-10"
           >
-            {!hideCloseButton && (
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="بستن"
-                className="absolute inset-e-5 top-5 text-text"
-              >
-                <IoClose size={24} />
-              </button>
-            )}
-
             {children}
           </motion.div>
         </div>
