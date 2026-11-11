@@ -1,6 +1,5 @@
 export const pathNames = {
   home: "/",
-  services: "/services",
   about: "/about",
   contact: "/contact",
   tour: (tourId: string) => `/tours/${tourId}`,

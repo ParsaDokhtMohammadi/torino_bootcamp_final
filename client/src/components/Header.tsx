@@ -20,7 +20,7 @@ const Header = () => {
         <nav className="not-sm:hidden sm:w-1/2">
           <ul className="flex items-center justify-between">
             {navItems.map((item) => (
-              <li key={item.href}>
+              <li key={item.label}>
                 <NavLink href={item.href}>{item.label}</NavLink>
               </li>
             ))}

@@ -64,7 +64,7 @@ const MobileMenu = () => {
                     const ItemIcon = isActive ? ActiveIcon : Icon
 
                     return (
-                      <li key={href} className="flex px-4">
+                      <li key={label} className="flex px-4">
                         <ItemIcon className={`size-5 ${isActive ? "text-primary" : "text-text"}`} aria-hidden="true"  />
                         <Link
                           href={href}

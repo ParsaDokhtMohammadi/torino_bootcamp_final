@@ -15,7 +15,7 @@ export const navItems = [
     ActiveIcon: HiHome,
   },
   {
-    href: pathNames.services,
+    href: pathNames.home,
     label: "خدمات گردشگری",
     Icon: HiOutlineGlobeAlt,
     ActiveIcon: HiOutlineGlobeAlt,
