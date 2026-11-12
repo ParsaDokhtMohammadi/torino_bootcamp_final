@@ -45,6 +45,15 @@ const PlaceSelect = ({ places, value, onChange, placeholder, icon, className = "
         <div className="absolute inset-s-0 top-full z-20 mt-2 w-full min-w-52 overflow-hidden rounded-xl border border-text/15 bg-white shadow-lg">
           <p className="bg-white/10 px-3 py-2 text-sm text-text">پرتردد</p>
           <ul className="max-h-72 overflow-y-auto">
+            <li className="border-t border-text/15">
+              <button
+                type="button"
+                onClick={() => handleSelect("")}
+                className={`flex h-13 w-full cursor-pointer items-center px-3 transition hover:bg-text/5 ${value ? "text-text/70" : "text-primary"}`}
+              >
+                همه شهرها
+              </button>
+            </li>
             {places.map((place) => (
               <li key={place.id} className="border-t border-text/15">
                 <button
