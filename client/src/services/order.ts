@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { api } from "@/lib/api"
+import { api } from "@/services/api"
 import type { CreateOrderBody, CreateOrderResponse } from "@/types/order"
 
 export function useCreateOrder() {

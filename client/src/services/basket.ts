@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
-import { api } from "@/lib/api"
+import { api } from "@/services/api"
 import type { Tour } from "@/types/tour"
 
 
