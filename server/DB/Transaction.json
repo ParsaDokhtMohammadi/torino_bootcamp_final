@@ -33,5 +33,12 @@
     "amount": 105000,
     "type": "Purchase",
     "createdAt": "2026-11-12T08:11:04.327Z"
+  },
+  {
+    "id": "9acbcd56-1a51-4061-8cf9-f8935f36245e",
+    "userId": "857f83b4-4b34-494e-bfc1-98d9c65b2cd1",
+    "amount": 240000,
+    "type": "Purchase",
+    "createdAt": "2026-11-12T08:59:07.079Z"
   }
 ]

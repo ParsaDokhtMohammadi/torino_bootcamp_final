@@ -1,5 +1,5 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Geist } from "next/font/google"
+import localFont from "next/font/local"
 
 export const byekan = localFont({
   src: [
@@ -18,14 +18,9 @@ export const byekan = localFont({
   display: "swap",
   adjustFontFallback: false,
   fallback: ["Tahoma", "system-ui", "sans-serif"],
-});
+})
 
 export const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
-
-export const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+})

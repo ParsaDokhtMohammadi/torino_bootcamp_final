@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { byekan, geistMono, geistSans } from "@/utils/fonts/fonts"
+import { byekan, geistSans } from "@/utils/fonts/fonts"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer/Footer"
 import Providers from "./providers"
@@ -14,7 +14,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fa" dir="rtl"
-      className={`${byekan.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${byekan.variable} ${geistSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <Providers>

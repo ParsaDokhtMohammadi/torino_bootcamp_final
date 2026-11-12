@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { FormProvider, useForm } from "react-hook-form"
 import type { DefaultValues } from "react-hook-form"
@@ -11,6 +12,7 @@ import { passengerSchema } from "@/validations/passenger"
 import type { PassengerFormInput, PassengerFormValues } from "@/validations/passenger"
 import { getFullName, toDate } from "@/utils/profile"
 import { getErrorMessage } from "@/utils/errors"
+import { pathNames } from "@/constants/paths"
 import type { Profile } from "@/types/profile"
 import type { Tour } from "@/types/tour"
 
@@ -30,6 +32,7 @@ function getDefaultValues(profile?: Profile): DefaultValues<PassengerFormInput> 
 }
 
 const CheckoutForm = ({ tour, profile }: CheckoutFormProps) => {
+  const router = useRouter()
   const { mutate: createOrder, isPending: isOrdering } = useCreateOrder()
   const form = useForm<PassengerFormInput, unknown, PassengerFormValues>({
     resolver: zodResolver(passengerSchema),
@@ -43,7 +46,7 @@ const CheckoutForm = ({ tour, profile }: CheckoutFormProps) => {
       {
         onSuccess: (data) => {
           toast.success(data.message)
-          form.reset()
+          router.replace(pathNames.myTours)
         },
         onError: (error) => toast.error(getErrorMessage(error)),
       },
