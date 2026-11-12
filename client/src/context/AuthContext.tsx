@@ -11,7 +11,6 @@ import type { CheckOtpResponse, Role, User } from "@/types/auth"
 type AuthContextValue = {
   user: User | null
   isReady: boolean
-  name: string
   mobile: string
   role: Role
   isLoginOpen: boolean
@@ -86,7 +85,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const value = {
     user,
     isReady,
-    name: [user?.firstName, user?.lastName].filter(Boolean).join(" "),
     mobile: user?.mobile ?? "",
     role: user ? "user" : "guest",
     isLoginOpen,
