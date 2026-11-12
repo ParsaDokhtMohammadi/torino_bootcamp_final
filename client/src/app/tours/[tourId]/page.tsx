@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getTourById, getTours } from "@/services/tours"
 import TourDetailsTemplate from "@/templates/TourDetailsTemplate"
-import { routePatterns } from "@/constants/paths"
 
 export const revalidate = 7200
 
@@ -11,7 +10,7 @@ export async function generateStaticParams() {
   return tours.map((tour) => ({ tourId: tour.id }))
 }
 
-export async function generateMetadata({ params }: PageProps<typeof routePatterns.tour>): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/tours/[tourId]">): Promise<Metadata> {
   const { tourId } = await params
   const tour = await getTourById(tourId)
 
@@ -22,7 +21,7 @@ export async function generateMetadata({ params }: PageProps<typeof routePattern
     title: `${tour.title} | تورینو`}
 }
 
-export default async function TourDetailsPage({params}: PageProps<typeof routePatterns.tour>) {
+export default async function TourDetailsPage({params}: PageProps<"/tours/[tourId]">) {
   const { tourId } = await params
   const tour = await getTourById(tourId)
 

@@ -8,12 +8,7 @@ export const pathNames = {
   myTours: "/dashboard/my-tours",
   transactions: "/dashboard/transactions",
   basket: "/basket",
-} as const
+}
 
 export const protectedPaths = [pathNames.profile, pathNames.basket]
 
-
-
-export const routePatterns = {
-  tour: "/tours/[tourId]",
-} as const
