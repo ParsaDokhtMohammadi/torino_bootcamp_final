@@ -62,6 +62,16 @@ Backend (provided): Node.js + Express, with JSON files as storage.
 
 **Logging in:** enter any mobile number. There is no SMS service, so the backend returns the code in terminal.
 
+### Test data
+
+The seeded tours in `server/DB/Tours/` have dates set so the booking rules can be tested:
+
+| Tour | Dates | What happens at checkout |
+|---|---|---|
+| تور ایتالیا | until 26 Nov 2026 (already started) | Blocked: "این تور در حال برگزاری است و امکان خرید آن وجود ندارد" |
+| تور کردستان, تور مادرید, سلیمانیه, هولر, تور مازندران, تور آفرود | 26 Nov → 17 Dec 2026 | Can be bought |
+
+
 ## Features
 
 - **Server-rendered pages**:
@@ -72,6 +82,7 @@ Backend (provided): Node.js + Express, with JSON files as storage.
   - **Server side:** the dashboard pages are rendered on the server, so the server needs a valid access token before the page loads. `proxy.ts` runs before protected routes (`/dashboard`, `/basket`). If the access token has expired, it uses the refresh token to get a new one. If there is no refresh token, the user is sent back to the home page.
   - **Browser side:** requests made from the browser (for example "reserve" on a tour page) go through an Axios interceptor. When a request fails with 401/403, it refreshes the token and retries the request.
 - **SSR-safe modal**: the modal is rendered into `document.body` with a portal, so it isn't clipped by parent layouts. During server rendering `document` doesn't exist, so the modal uses a small `useIsClient` hook built on `useSyncExternalStore`. It returns `false` on the server and during hydration, then `true` in the browser, so the portal is only created on the client. The modal can be placed anywhere on the website without crashing the app.
+- **Booking date check**: before an order is sent, checkout checks the tour's dates. A tour that has already ended or is in progress can't be bought, and the user sees a message explaining why.
 - **Real national code validation**: the national code is checked with the official algorithm, not just its length.
   - Persian or Arabic digits are converted to English first.
   - The code must be exactly 10 digits and can't be one repeated digit (like `1111111111`).

@@ -41,6 +41,15 @@ const CheckoutForm = ({ tour, profile }: CheckoutFormProps) => {
 
   const onSubmit = form.handleSubmit((values) => {
     if (isOrdering) return
+    const now = new Date()
+    if (new Date(tour.endDate) < now) {
+      toast.error("این تور به پایان رسیده است")
+      return
+    }
+    if (new Date(tour.startDate) <= now) {
+      toast.error("این تور در حال برگزاری است و امکان خرید آن وجود ندارد")
+      return
+    }
     createOrder(
       { ...values, birthDate: values.birthDate.toISOString() },
       {

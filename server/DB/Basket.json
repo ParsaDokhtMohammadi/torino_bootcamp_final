@@ -1,1 +1,24 @@
-{}
+{
+  "id": "67890abc-def1-2345-6789-0abcdef12345",
+  "origin": {
+    "id": "1",
+    "name": "Tehran"
+  },
+  "destination": {
+    "id": "9",
+    "name": "Italy"
+  },
+  "startDate": "2026-11-07T00:00:00.000Z",
+  "endDate": "2026-11-26T00:00:00.000Z",
+  "title": "تور ایتالیا",
+  "fleetVehicle": "airplane",
+  "price": 18000,
+  "availableSeats": 20,
+  "capacity": 200,
+  "insurance": true,
+  "options": [
+    "نهار و صبحانه",
+    "هفل پنج ستاره"
+  ],
+  "image": "http://localhost:6500/static/images/italyTour.png"
+}
