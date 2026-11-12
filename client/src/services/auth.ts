@@ -7,23 +7,21 @@ import type {
   SendOtpResponse,
 } from "@/types/auth"
 
-export async function sendOtp(body: SendOtpBody) {
-  const { data } = await api.post<SendOtpResponse>("/auth/send-otp", body)
-  return data
-}
-
-export async function checkOtp(body: CheckOtpBody) {
-  const { data } = await api.post<CheckOtpResponse>("/auth/check-otp", body)
-  return data
-}
-
 export function useSendOtp() {
+  async function sendOtp(body: SendOtpBody) {
+    const { data } = await api.post<SendOtpResponse>("/auth/send-otp", body)
+    return data
+  }
   return useMutation({
     mutationFn: sendOtp,
   })
 }
 
 export function useCheckOtp() {
+  async function checkOtp(body: CheckOtpBody) {
+    const { data } = await api.post<CheckOtpResponse>("/auth/check-otp", body)
+    return data
+  }
   return useMutation({
     mutationFn: checkOtp,
   })
