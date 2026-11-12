@@ -34,6 +34,7 @@ function getDefaultValues(profile: Profile): DefaultValues<PersonalInfoInput> {
 }
 
 const PersonalInfoForm = ({ profile }: PersonalInfoFormProps) => {
+  "use no memo"
   const { mutate, isPending } = useUpdateProfile()
   const {
     register,

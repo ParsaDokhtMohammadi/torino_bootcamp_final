@@ -16,6 +16,7 @@ type AccountInfoFormProps = {
 }
 
 const AccountInfoForm = ({ profile }: AccountInfoFormProps) => {
+  "use no memo"
   const { mutate, isPending } = useUpdateProfile()
   const {
     register,

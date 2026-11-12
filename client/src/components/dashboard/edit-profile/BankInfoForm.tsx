@@ -24,6 +24,7 @@ function getDefaultValues({ payment }: Profile) {
 }
 
 const BankInfoForm = ({ profile }: BankInfoFormProps) => {
+  "use no memo"
   const { mutate, isPending } = useUpdateProfile()
   const {
     register,
